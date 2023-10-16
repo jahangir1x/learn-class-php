@@ -38,4 +38,19 @@ class Book
             "Author: " . $this->author . "\n" .
             "Available: " . $this->available . "\n";
     }
+
+    public function __call($method, $args)
+    {
+        $operation = substr($method, 0, 3);
+        $property = lcfirst(substr($method, 3));
+        if ($operation === 'get') {
+            if (property_exists($this, $property)) {
+                return $this->$property;
+            }
+        } elseif ($operation === 'set') {
+            if (property_exists($this, $property)) {
+                $this->$property = $args[0];
+            }
+        }
+    }
 }
