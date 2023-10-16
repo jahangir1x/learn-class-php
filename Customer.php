@@ -13,4 +13,12 @@ class Customer
         $this->lastName = $lastName;
         $this->email = $email;
     }
+
+    public function __toString()
+    {
+        return "ID: " . $this->id . "\n" .
+            "First Name: " . $this->firstName . "\n" .
+            "Last Name: " . $this->lastName . "\n" .
+            "Email: " . $this->email . "\n";
+    }
 }
